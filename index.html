@@ -13,7 +13,62 @@
 
 <body>
     <header>
-        <h1 id="title">Cashuru</h1>
+
+        <section id="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect class="icon-bg" x="0" y="0" width="512" height="512" rx="100"/><path class="wallet" d="M145 190 L315 105 Q340 93 353 119 L375 157 Z"/><path class="wallet" d="M195 190 L350 145 Q374 138 385 163 L395 190 Z"/><path class="wallet" d="M105 205Q105 180 135 180H377Q407 180 407 210V240H345Q305 240 305 280Q305 320 345 320H407V355Q407 385 377 385H135Q105 385 105 355Z"/><path class="wallet" d="M345 250H410Q430 250 430 270V290Q430 310 410 310H345Q315 310 315 280Q315 250 345 250Z"/><circle class="icon-bg" cx="365" cy="280" r="12"/></svg>
+        </section>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="toggle">
+            <span class="top-line common"></span>
+            <span class="mid-line common"></span>
+            <span class="bot-line common"></span>
+        </label>
+
+        <div class="slide">
+
+            <h1 id="title">Cashuru</h1>
+
+            <ul id="list">
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M6,19H9V13h6v6h3V10L12,5.5L6,10v9ZM4,21V9l8-6l8,6V21H13V15H11v6H4Zm8-8.75Z"/></svg>
+                        <span>Dashboard</span>  
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M4,6V4H20V6H4ZM4,20V14H3V12L4,7H20l1,5v2H20v6H18V14H14v6H4Zm2-2h6V14H6v4ZM5.05,12h13.9H5.05Zm0,0h13.9l-0.6-3H5.65l-0.6,3Z"/></svg>                       
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M14,13q-1.25,0-2.13-0.88T11,10t0.88-2.13T14,7t2.13,0.88T17,10t-0.88,2.13T14,13ZM7,16q-0.82,0-1.41-0.59T5,14V6Q5,5.18 5.59,4.59T7,4H21q0.83,0 1.41,0.59Q23,5.18 23,6v8q0,0.82-0.59,1.41T21,16H7Zm2-2H19q0-0.83 0.59-1.41T21,12V8q-0.82,0-1.41-0.59T19,6H9Q9,6.82 8.41,7.41Q7.83,8 7,8v4q0.83,0 1.41,0.59Q9,13.18 9,14Zm11,6H3q-0.82,0-1.41-0.59T1,18V7H3V18H20v2ZM7,14V6v8Z"/></svg>                        
+                        <span>Budgets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M16.71,10.71Q17,10.43 17,10q0-0.43-0.29-0.71T16,9T15.29,9.29T15,10t0.29,0.71T16,11q0.43,0 0.71-0.29ZM8,9h5V7H8V9ZM4.5,21q-0.85-2.85-1.67-5.69T2,9.5Q2,7.2 3.6,5.6T7.5,4h5q0.73-0.95 1.76-1.48T16.5,2q0.63,0 1.06,0.44T18,3.5q0,0.15-0.04,0.3T17.88,4.07q-0.1,0.27-0.19,0.56T17.55,5.22L19.83,7.5H22v6.98L19.18,15.4L17.5,21H12V19H10v2H4.5ZM6,19H8V17h6v2h2l1.55-5.15L20,13.02V9.5H19L15.5,6q0-0.5 0.06-0.96T15.75,4.1q-0.72,0.2-1.27,0.69T13.68,6H7.5Q6.05,6 5.03,7.02T4,9.5q0,2.45 0.67,4.79T6,19Zm6-7.45Z"/></svg>
+                        <span>Savings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M3,21V19l2-2v4H3Zm4,0V15l2-2v8H7Zm4,0V13l2,2.03V21H11Zm4,0V15.03l2-2V21H15Zm4,0V11l2-2V21H19ZM3,15.83V13l7-7l4,4l7-7V5.82l-7,7l-4-4l-7,7Z"/></svg>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M9.25,22l-0.4-3.2q-0.32-0.13-0.61-0.3T7.68,18.13L4.7,19.38L1.95,14.63l2.58-1.95Q4.5,12.5 4.5,12.34q0-0.16 0-0.34t0-0.34t0.03-0.34L1.95,9.38L4.7,4.63L7.68,5.88Q7.95,5.68 8.25,5.5t0.6-0.3L9.25,2h5.5l0.4,3.2q0.33,0.13 0.61,0.3t0.56,0.38L19.3,4.63l2.75,4.75l-2.57,1.95q0.02,0.18 0.02,0.34t0,0.34t0,0.34t-0.05,0.34l2.57,1.95l-2.75,4.75l-2.95-1.25q-0.27,0.2-0.57,0.38t-0.6,0.3L14.75,22H9.25ZM11,20h1.98l0.35-2.65q0.78-0.2 1.44-0.59t1.21-0.94l2.47,1.03l0.98-1.7l-2.15-1.63q0.13-0.35 0.17-0.74T17.5,12t-0.05-0.79q-0.05-0.39-0.17-0.74l2.15-1.63l-0.98-1.7L15.98,8.2q-0.55-0.57-1.21-0.96T13.33,6.65L13,4H11.03L10.68,6.65Q9.9,6.85 9.24,7.24T8.03,8.17L5.55,7.15L4.58,8.85l2.15,1.6Q6.6,10.83 6.55,11.2T6.5,12q0,0.4 0.05,0.77t0.17,0.75L4.58,15.15l0.98,1.7L8.03,15.8q0.55,0.58 1.21,0.96t1.44,0.59L11,20Zm1.05-4.5q1.45,0 2.47-1.03T15.55,12T14.53,9.52T12.05,8.5q-1.47,0-2.49,1.02T8.55,12t1.01,2.47t2.49,1.03ZM12,12Z"/></svg>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <button id="theme-switch">
             <span>
