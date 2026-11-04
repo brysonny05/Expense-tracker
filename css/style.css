@@ -1,0 +1,93 @@
+:root{
+    --base-color: white;
+    --base-variant: #e8e9ed;
+    --text-color: #111528;
+    --secondary-text: #232738;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+    --title-color: rgb(0, 216, 0); 
+}
+.darkmode{
+    --base-color: #070b1d;
+    --base-variant: #101425;
+    --text-color: #ffffff;
+    --secondary-text: #a4a5b8;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+    --title-color: rgb(2, 143, 2); 
+}
+
+#theme-switch{
+    height: 35px;
+    width: 65px;
+    padding: 4px;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--base-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    top: 20px;
+    right: 20px;
+    position: fixed;
+    transition: background-color 0.3s;
+}
+
+#theme-switch span{
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: transform 0.3s;
+    justify-content: flex-start;
+}
+
+#theme-switch span svg{
+    height: 27px;
+    width: 27px;
+    fill: white;
+}
+
+.darkmode #theme-switch span{
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s;
+    justify-content: flex-start;
+}
+
+.darkmode #theme-switch span svg{
+    height: 27px;
+    width: 27px;
+    fill: var(--primary-color);
+}
+
+#theme-switch svg:last-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child{
+    display: block;
+}
+
+.darkmode #theme-switch span{
+    transform: translateX(30px);
+}
+
+.darkmode #theme-switch{
+    background-color: var(--primary-color);
+}
+
+body{
+    background-color: var(--base-color);
+    color: var(--text-color);
+}
+
+#title{
+    color: var(--title-color);
+}
