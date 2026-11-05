@@ -1,4 +1,4 @@
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{
     --base-color: white;
@@ -9,7 +9,9 @@
     --accent-color: #0071ff;
     --title-color: rgb(0, 216, 0); 
     --hover-color: #cbcbcb;
-    --shadow-color: rgba(0, 0, 0, 0.12)
+    --shadow-color: rgba(0, 0, 0, 0.12);
+    --main-font: 'Inter', sans-serif;
+    --title-font: 'Bebas Neue', sans-serif;
 }
 .darkmode{
     --base-color: #070b1d;
@@ -33,9 +35,9 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    top: 30px;
+    top: 20px;
     right: 20px;
-    position: fixed;
+    position: absolute;
     transition: background-color 0.3s;
 }
 
@@ -101,7 +103,7 @@ body{
     padding-top: 20px;
     font-weight: 800;
     pointer-events: none;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--title-font);
     font-size: 30px
 }
 
@@ -111,9 +113,9 @@ body{
     padding: 4px;
     display: flex;
     align-items: center;
-    position: fixed;
-    top: 20px;
-    left: 20px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
     z-index: 4;
     background: transparent;
 }
@@ -157,7 +159,7 @@ body{
 .slide{
     height: 100vh;
     width: 230px;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: var(--base-variant);
@@ -173,7 +175,7 @@ ul li{
 ul li a{
     color: var(--secondary-text);
     font-weight: 500;
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: var(--main-font);
     text-transform: capitalize;
     text-decoration: none;
     transition: 0.2s ease-out;
@@ -191,10 +193,10 @@ input{
 }
 
 .toggle{
-    position: fixed;
+    position: absolute;
     height: 25px;
     width: 25px;
-    top: 35px;
+    top: 30px;
     left: 80px;
     z-index: 5;
     cursor: pointer;
@@ -290,7 +292,7 @@ input:checked ~ .toggle .mid-line{
 #page-title {
     margin-left: 240px;
     padding: 12px 20px;
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: var(--main-font);
 }
 
 #page-name {
@@ -314,9 +316,40 @@ input:checked ~ .toggle .mid-line{
 }
 
 #greeting {
-    margin-right: 110px;
-    padding: 12px 20px;
-    font-family: 'EB Garamond', Georgia, serif;
+    margin: 0;
     font-size: 15px;
-    padding-top: 15px;
+}
+
+#date {
+    margin: 5px 0 0 0;
+    font-size: 10px;
+}
+
+#greeting-con {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 130px;
+    font-family: var(--main-font);
+}
+
+#summary-con {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 1000px;
+    padding: 20px;
+}
+
+#summary-con section {
+    min-height: 40px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    background-color: var(--base-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: 120px;
+}
+
+#main-header {
+    position: relative;
 }

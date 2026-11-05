@@ -35,3 +35,15 @@ else if (hour < 18) {
 else {
     greeting.textContent ="Good Evening, USER 👋";
 }
+
+const dateDis = document.getElementById("date");
+const today = new Date();
+
+const options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+};
+
+dateDis.textContent =  today.toLocaleDateString("en-US", options);
