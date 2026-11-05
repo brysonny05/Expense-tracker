@@ -9,6 +9,7 @@
     --accent-color: #0071ff;
     --title-color: rgb(0, 216, 0); 
     --hover-color: #cbcbcb;
+    --shadow-color: rgba(0, 0, 0, 0.12)
 }
 .darkmode{
     --base-color: #070b1d;
@@ -19,6 +20,7 @@
     --accent-color: #0071ff;
     --title-color: rgb(2, 143, 2); 
     --hover-color: #232a41;
+    --shadow-color: rgba(83, 83, 83, 0.12)
 }
 
 #theme-switch{
@@ -31,7 +33,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    top: 20px;
+    top: 30px;
     right: 20px;
     position: fixed;
     transition: background-color 0.3s;
@@ -96,7 +98,7 @@ body{
     color: var(--title-color);
     text-align: right;
     padding-right: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
     font-weight: 800;
     pointer-events: none;
     font-family: 'Bebas Neue', sans-serif;
@@ -123,12 +125,12 @@ body{
 
 .icon-bg {
     fill: var(--title-color);
-    transition: 0.3s ease;
+    transition: fill 0.3s ease;
 }
 
 .wallet {
     fill: var(--base-color);
-    transition: 0.3s ease;
+    transition: fill 0.3s ease;
 }
 
 #list a {
@@ -145,7 +147,7 @@ body{
 }
 
 #list{
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 *{
@@ -196,7 +198,7 @@ input{
     left: 80px;
     z-index: 5;
     cursor: pointer;
-    background-color: var(--base-color);
+    background-color: transparent;
     border-radius: 2px;
     transition: left 0.3s ease;
 }
@@ -262,7 +264,7 @@ input:checked ~ .toggle .mid-line{
 #menu-toggle:checked ~ .toggle {
     left: 190px;
     top: 15px;
-    background-color: var(--base-variant);
+    background-color: transparent;
     transition: 0.3s ease;
 }
 
@@ -283,4 +285,38 @@ input:checked ~ .toggle .mid-line{
 
 #list li a:hover {
     background-color: var(--hover-color);
+}
+
+#page-title {
+    margin-left: 240px;
+    padding: 12px 20px;
+    font-family: 'EB Garamond', Georgia, serif;
+}
+
+#page-name {
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+#page-desc {
+    font-size: 10px;
+    color: var(--secondary-text);
+}
+
+#page-header {
+    width: 100%;
+    height: 80px;
+    background-color: var(--base-color);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#greeting {
+    margin-right: 110px;
+    padding: 12px 20px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    padding-top: 15px;
 }
