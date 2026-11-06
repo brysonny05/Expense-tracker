@@ -6,8 +6,7 @@
     --text-color: #111528;
     --secondary-text: #232738;
     --primary-color: #3a435d;
-    --accent-color: #0071ff;
-    --title-color: rgb(0, 216, 0); 
+    --accent-color: rgb(0, 216, 0);
     --hover-color: #cbcbcb;
     --shadow-color: rgba(0, 0, 0, 0.12);
     --main-font: 'Inter', sans-serif;
@@ -19,8 +18,7 @@
     --text-color: #ffffff;
     --secondary-text: #a4a5b8;
     --primary-color: #3a435d;
-    --accent-color: #0071ff;
-    --title-color: rgb(2, 143, 2); 
+    --accent-color: rgb(2, 143, 2);
     --hover-color: #232a41;
     --shadow-color: rgba(166, 166, 166, 0.12);
 }
@@ -97,7 +95,7 @@ body{
 }
 
 #title{
-    color: var(--title-color);
+    color: var(--accent-color);
     text-align: right;
     padding-right: 10px;
     padding-top: 20px;
@@ -126,7 +124,7 @@ body{
 }
 
 .icon-bg {
-    fill: var(--title-color);
+    fill: var(--accent-color);
     transition: fill 0.3s ease;
 }
 
@@ -142,7 +140,7 @@ body{
 }
 
 #list svg{
-    fill: var(--title-color);
+    fill: var(--accent-color);
     width: 24px;
     height: 24px;
     flex-shrink: 0;
@@ -209,7 +207,7 @@ input{
     position: absolute;
     height: 2px;
     width: 20px;
-    background-color: var(--title-color);
+    background-color: var(--accent-color);
     border-radius: 50px;
     transition: 0.3s ease;
 }
@@ -343,15 +341,63 @@ input:checked ~ .toggle .mid-line{
 }
 
 #summary-con section {
-    min-height: 40px;
     box-shadow: 0 3px 10px var(--shadow-color);
-    background-color: var(--base-color);
-    padding: 20px;
     border-radius: 10px;
-    width: 120px;
+    height: 80px;
+    width: 150px;
+}
+
+#summary-con p {
+    font-family: var(--main-font);
+    color: var(--secondary-text);
+    margin: 0;
 }
 
 #main-header {
     position: relative;
     font-family: var(--title-font);
+}
+
+#savings-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+#income-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+#balance-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+#expenses-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.balance {
+    fill: var(--accent-color);
+}
+
+.trend-up {
+    fill: rgb(0, 0, 175);
+}
+
+.trend-down {
+    fill: rgb(194, 0, 0)
+}
+
+.piggy {
+    fill: pink;
 }

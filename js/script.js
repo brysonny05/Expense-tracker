@@ -47,3 +47,7 @@ const options = {
 };
 
 dateDis.textContent =  today.toLocaleDateString("en-US", options);
+
+let totalIncome = income.reduce ((total, transaction) => {
+    return total + transaction.amount}, 0
+);
