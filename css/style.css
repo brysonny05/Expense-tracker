@@ -333,18 +333,13 @@ input:checked ~ .toggle .mid-line{
 
 #summary-con {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     position: absolute;
-    right: 40px;
     top: 120px;
-}
-
-#summary-con section {
-    box-shadow: 0 3px 10px var(--shadow-color);
-    border-radius: 10px;
-    height: 80px;
-    width: 150px;
+    justify-content: center;
+    left: 0;
+    right: 0;
 }
 
 #summary-con p {
@@ -358,46 +353,71 @@ input:checked ~ .toggle .mid-line{
     font-family: var(--title-font);
 }
 
-#savings-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-}
-
-#income-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-}
-
-#balance-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-}
-
-#expenses-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-}
-
 .balance {
     fill: var(--accent-color);
+    background-color: #9cf59a;
 }
 
 .trend-up {
     fill: rgb(0, 0, 175);
+    background-color: #b8ddfd;
 }
 
 .trend-down {
-    fill: rgb(194, 0, 0)
+    fill: rgb(194, 0, 0);
+    background-color: #fee2e2;
 }
 
 .piggy {
-    fill: pink;
+    fill: rgb(250, 120, 141);
+    background-color: #f3e8ff;
+}
+
+.summary-card div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.summary-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    border-radius: 10px;
+    height: 80px;
+    width: 250px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#summary-con .summary-card > p {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.summary-card svg {
+    padding: 4px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+@media (max-width: 768px) {
+    #summary-con {
+        position: static;
+        align-items: flex-end;
+    }
+}
+
+.summary-value {
+    align-self: flex-start;
 }

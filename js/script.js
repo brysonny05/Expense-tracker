@@ -48,6 +48,70 @@ const options = {
 
 dateDis.textContent =  today.toLocaleDateString("en-US", options);
 
-let totalIncome = income.reduce ((total, transaction) => {
-    return total + transaction.amount}, 0
-);
+let transactions = [
+    { name: "Paycheck", amount: 850, type: "income" },
+    { name: "Kroger", amount: 65.50, type: "expense" },
+    { name: "Gas Station", amount: 40, type: "expense" },
+    { name: "Netflix", amount: 15.99, type: "expense" },
+    { name: "Refund", amount: 25, type: "income" }
+];
+
+function calculateIncome() {
+
+    let income = transactions.filter(transaction => {
+        return transaction.type === "income";
+    });
+
+    let totalIncome = income.reduce((total, transaction) => {
+        return total + transaction.amount;
+    }, 0);
+
+    return totalIncome
+}
+
+function calculateExpenses() {
+
+    let expenses = transactions.filter(transaction => {
+        return transaction.type === "expense";
+    });
+
+    let totalExpenses = expenses.reduce((total, transaction) => {
+        return total + transaction.amount
+    }, 0);
+
+    return totalExpenses
+}
+
+function updateDashboard() {
+    let totalIncome = calculateIncome()
+    let totalExpenses = calculateExpenses()
+
+    let totalBalance = totalIncome - totalExpenses;
+
+    let balanceElement = document.getElementById("balance-num");
+    balanceElement.textContent = totalBalance.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+
+    let incomeElement = document.getElementById("income-num");
+    incomeElement.textContent = totalIncome.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+
+    let expensesElement = document.getElementById("expense-num");
+    expensesElement.textContent = totalExpenses.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+
+    let totalSavings = totalIncome * .2;
+    let savingsElement = document.getElementById("savings-num");
+    savingsElement.textContent = totalSavings.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+}
+
+updateDashboard()
