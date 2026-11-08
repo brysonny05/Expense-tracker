@@ -421,3 +421,15 @@ input:checked ~ .toggle .mid-line{
 .summary-value {
     align-self: flex-start;
 }
+
+#summary-con .summary-card > p.positive-change {
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#summary-con .summary-card > p.negative-change {
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 400;
+}
