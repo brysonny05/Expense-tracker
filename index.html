@@ -97,49 +97,147 @@
         </button>
     </header>
 
-    <body>
-        <div id="summary-con">
-            <section id="balance-box" class="summary-card">
-                <div>
-                    <p>Balance</p>
-                    <svg class="balance" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M5,19V5Q5,5 5,6.11Q5,7.22 5,9v6q0,1.77 0,2.89T5,19Zm0,2q-0.83,0-1.41-0.59T3,19V5Q3,4.17 3.59,3.59T5,3H19q0.83,0 1.41,0.59T21,5V7.5H19V5H5V19H19V16.5h2V19q0,0.82-0.59,1.41T19,21H5Zm8-4q-0.82,0-1.41-0.59T11,15V9q0-0.83 0.59-1.41T13,7h7q0.83,0 1.41,0.59T22,9v6q0,0.82-0.59,1.41T20,17H13Zm7-2V9H13v6h7Zm-2.94-1.94Q17.5,12.63 17.5,12t-0.44-1.06T16,10.5t-1.06,0.44T14.5,12t0.44,1.06T16,13.5t1.06-0.44Z"/></svg>
+    <section id="summary-con">
+        <section id="balance-box" class="summary-card">
+            <div>
+                <p>Balance</p>
+                <svg class="balance" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M5,19V5Q5,5 5,6.11Q5,7.22 5,9v6q0,1.77 0,2.89T5,19Zm0,2q-0.83,0-1.41-0.59T3,19V5Q3,4.17 3.59,3.59T5,3H19q0.83,0 1.41,0.59T21,5V7.5H19V5H5V19H19V16.5h2V19q0,0.82-0.59,1.41T19,21H5Zm8-4q-0.82,0-1.41-0.59T11,15V9q0-0.83 0.59-1.41T13,7h7q0.83,0 1.41,0.59T22,9v6q0,0.82-0.59,1.41T20,17H13Zm7-2V9H13v6h7Zm-2.94-1.94Q17.5,12.63 17.5,12t-0.44-1.06T16,10.5t-1.06,0.44T14.5,12t0.44,1.06T16,13.5t1.06-0.44Z"/></svg>
+            </div>
+
+            <p id="balance-num" class="sum-val"></p>
+            <p id="balance-change"></p>
+        </section>
+
+        <section id="income-box" class="summary-card">
+            <div>
+                <p>Income</p>
+                <svg class="trend-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M3.4,18L2,16.6L9.4,9.15l4,4L18.6,8H16V6h6v6H20V9.4L13.4,16l-4-4l-6,6Z"/></svg>
+            </div>
+
+            <p id="income-num" class="sum-val"></p>
+            <p id="income-change"></p>
+        </section>
+
+        <section id="expenses-box" class="summary-card">
+            <div>
+                <p>Expenses</p>
+                <svg class ="trend-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M16,18V16h2.6l-5.2-5.15l-4,4L2,7.4L3.4,6l6,6l4-4L20,14.6V12h2v6H16Z"/></svg>
+            </div>
+
+            <p id="expense-num" class="sum-val"></p>
+            <p id="expense-change"></p>
+        </section>
+
+        <section id="savings-box" class="summary-card">
+            <div>
+                <p>Savings</p>
+                <svg class="piggy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M16.71,10.71Q17,10.43 17,10q0-0.43-0.29-0.71T16,9T15.29,9.29T15,10t0.29,0.71T16,11q0.43,0 0.71-0.29ZM8,9h5V7H8V9ZM4.5,21q-0.85-2.85-1.67-5.69T2,9.5Q2,7.2 3.6,5.6T7.5,4h5q0.73-0.95 1.76-1.48T16.5,2q0.63,0 1.06,0.44T18,3.5q0,0.15-0.04,0.3T17.88,4.07q-0.1,0.27-0.19,0.56T17.55,5.22L19.83,7.5H22v6.98L19.18,15.4L17.5,21H12V19H10v2H4.5ZM6,19H8V17h6v2h2l1.55-5.15L20,13.02V9.5H19L15.5,6q0-0.5 0.06-0.96T15.75,4.1q-0.72,0.2-1.27,0.69T13.68,6H7.5Q6.05,6 5.03,7.02T4,9.5q0,2.45 0.67,4.79T6,19Zm6-7.45Z"/></svg>
+            </div>
+
+            <p id="savings-num" class="sum-val"></p>
+            <p id="savings-change"></p>
+        </section>
+    </section>
+
+    <section id="analytics-con">
+        <div id="spending-chart">
+            <h2>Spending Breakdown</h2>
+            <div id="chart-content">
+                <svg width="260" height="260">
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="65"
+                        fill="none"
+                        stroke="green"
+                        stroke-width="30"
+                        stroke-dasharray="125.66 314.16"
+                        transform="rotate(-90 100 100)"
+                    />
+
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="65"
+                        fill="none"
+                        stroke="blue"
+                        stroke-width="30"
+                        stroke-dasharray="94.25 314.16"
+                        stroke-dashoffset="-125.66"
+                        transform="rotate(-90 100 100)"
+                    />
+
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="65"
+                        fill="none"
+                        stroke="purple"
+                        stroke-width="30"
+                        stroke-dasharray="62.83 314.16"
+                        stroke-dashoffset="-219.91"
+                        transform="rotate(-90 100 100)"
+                    />
+
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="65"
+                        fill="none"
+                        stroke="yellow"
+                        stroke-width="30"
+                        stroke-dasharray="31.42 314.16"
+                        stroke-dashoffset="-282.74"
+                        transform="rotate(-90 100 100)"
+                    />
+                </svg>
+
+                <div id="legend">
+                    <div class="legend-item">
+                        <span class="legend-color groceries"></span>
+                        <p>Groceries</p>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-color transportation"></span>
+                        <p>Transportation</p>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-color subscriptions"></span>
+                        <p>Subscriptions</p>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-color other"></span>
+                        <p>Other</p>
+                    </div>
                 </div>
-
-                <p id="balance-num" class="sum-val"></p>
-                <p id="balance-change"></p>
-            </section>
-
-            <section id="income-box" class="summary-card">
-                <div>
-                    <p>Income</p>
-                    <svg class="trend-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M3.4,18L2,16.6L9.4,9.15l4,4L18.6,8H16V6h6v6H20V9.4L13.4,16l-4-4l-6,6Z"/></svg>
-                </div>
-
-                <p id="income-num" class="sum-val"></p>
-                <p id="income-change"></p>
-            </section>
-
-            <section id="expenses-box" class="summary-card">
-                <div>
-                    <p>Expenses</p>
-                    <svg class ="trend-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M16,18V16h2.6l-5.2-5.15l-4,4L2,7.4L3.4,6l6,6l4-4L20,14.6V12h2v6H16Z"/></svg>
-                </div>
-
-                <p id="expense-num" class="sum-val"></p>
-                <p id="expense-change"></p>
-            </section>
-
-            <section id="savings-box" class="summary-card">
-                <div>
-                    <p>Savings</p>
-                    <svg class="piggy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px"><path d="M16.71,10.71Q17,10.43 17,10q0-0.43-0.29-0.71T16,9T15.29,9.29T15,10t0.29,0.71T16,11q0.43,0 0.71-0.29ZM8,9h5V7H8V9ZM4.5,21q-0.85-2.85-1.67-5.69T2,9.5Q2,7.2 3.6,5.6T7.5,4h5q0.73-0.95 1.76-1.48T16.5,2q0.63,0 1.06,0.44T18,3.5q0,0.15-0.04,0.3T17.88,4.07q-0.1,0.27-0.19,0.56T17.55,5.22L19.83,7.5H22v6.98L19.18,15.4L17.5,21H12V19H10v2H4.5ZM6,19H8V17h6v2h2l1.55-5.15L20,13.02V9.5H19L15.5,6q0-0.5 0.06-0.96T15.75,4.1q-0.72,0.2-1.27,0.69T13.68,6H7.5Q6.05,6 5.03,7.02T4,9.5q0,2.45 0.67,4.79T6,19Zm6-7.45Z"/></svg>
-                </div>
-
-                <p id="savings-num" class="sum-val"></p>
-                <p id="savings-change"></p>
-            </section>
+            </div>
         </div>
-    </body>
 
+        <div id="monthly-chart">
+            <h2>Monthly Income vs. Expenses</h2>
+        </div>
+    </section>
+
+    <section id="transactions-con">
+        <h2>Recent Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>
