@@ -87,10 +87,42 @@ function updateDashboard() {
     let totalExpenses = calculateExpenses();
 
     let today = new Date();
-    let currentMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
+
+    //Get the current month and year.
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+    
+    let currentMonthString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}`;
+
+    let previousMonth;
+    let previousYear;
+
+    //Determine the previous month and year.
+    //IF current month is January:
+    if (currentMonth === 0) {
+        //Set previous month to December (11).
+        previousMonth = 11;
+    
+        //Set previous year to current year minus 1.
+        previousYear = currentYear - 1;
+    }
+
+    //ELSE:
+    else {
+        //Set previous month to current month minus 1.
+        previousMonth = currentMonth - 1
+
+        //Set previous year to current year.
+        previousYear = currentYear
+    }
+
+    //Format the previous month into a YYYY-MM string.
+    //Convert the month into a two-digit number.
+    //Combine previous year, a dash, and the formatted month.
+    let previousMonthString = `${previousYear}-${String(previousMonth + 1).padStart(2, "0")}`;
 
     let monthlyTransactions = transactions.filter(transaction => {
-        return transaction.date.slice(0, 7) === currentMonth;
+        return transaction.date.slice(0, 7) === currentMonthString;
     });
 
     let monthlyIncome = monthlyTransactions.filter(transaction => {
@@ -101,6 +133,23 @@ function updateDashboard() {
         return transaction.type === "expense";
     });
 
+    //Filter transactions.
+    //Create an array containing transactions from the previous month.
+    let previousMonthTransactions = transactions.filter(transaction => {
+        return transaction.date.slice(0, 7) === previousMonthString
+    });
+
+    //Separate previous-month transactions.
+    //Create an array containing only income transactions.
+    let previousMonthIncome = previousMonthTransactions.filter(transaction => {
+        return transaction.type === "income"
+    });    
+
+    //Create an array containing only expense transactions.
+    let previousMonthExpenses = previousMonthTransactions.filter(transaction => {
+        return transaction.type === "expense"
+    })
+
     let totalMonthlyIncome = monthlyIncome.reduce((total, transaction) => {
         return total + transaction.amount;
     }, 0);
@@ -108,6 +157,62 @@ function updateDashboard() {
     let totalMonthlyExpenses = monthlyExpenses.reduce((total, transaction) => {
         return total + transaction.amount;
     }, 0);
+
+    //Calculate previous-month totals.
+    //Add together all previous-month income amounts.
+    let previousMonthTotalIncome = previousMonthIncome.reduce((total, transaction) => {
+        return total + transaction.amount
+    }, 0);
+
+    //Add together all previous-month expense amounts.
+    let previousMonthTotalExpenses = previousMonthExpenses.reduce((total, transaction) => {
+        return total + transaction.amount
+    }, 0);
+
+    let previousMonthBalance = previousMonthTotalIncome - previousMonthTotalExpenses;
+
+    let currentMonthBalance = totalMonthlyIncome - totalMonthlyExpenses;
+
+    let balanceChange;
+    
+    if (previousMonthBalance === 0) {
+        balanceChange = "unavailable"
+    }
+
+    else {
+        balanceChange = (currentMonthBalance - previousMonthBalance) / previousMonthBalance * 100
+    }
+
+    let incomeChange;
+
+    //Calculate percentage changes.
+    //IF previous-month income equals 0:
+    if (previousMonthTotalIncome === 0) {
+        //Set income percentage change to unavailable.
+        incomeChange = "unavailable"
+    }
+
+    //ELSE
+    else {
+        //Calculate income percentage change:
+        //(Current month income - Previous month income) / Previous month income * 100.
+        incomeChange = (totalMonthlyIncome - previousMonthTotalIncome) / previousMonthTotalIncome * 100
+    }
+
+    let expenseChange;
+
+    //IF previous-month expenses equals 0:
+    if ( previousMonthTotalExpenses === 0) {
+        //Set expense percentage change to unavailable.
+        expenseChange = "unavailable"
+    }
+
+    //ELSE
+    else {
+        //Calculate expense percentage change:
+        //(Current month expenses - Previous month expenses) / Previous month expenses * 100.
+        expenseChange = (totalMonthlyExpenses - previousMonthTotalExpenses) / previousMonthTotalExpenses * 100
+    }
 
     let balanceChangeElement = document.getElementById("balance-change");
     let incomeChangeElement = document.getElementById("income-change");
@@ -148,57 +253,15 @@ function updateDashboard() {
     displayChange(balanceChangeElement, balanceChange);
 }
 
-
-let novemberIncome = transactions.filter(transaction => {
-    return transaction.type === "income" &&
-    transaction.date.slice(0, 7) === "2026-11";
-});
-
-let novemberExpenses = transactions.filter(transaction => {
-    return transaction.type === "expense" &&
-    transaction.date.slice(0, 7) === "2026-11";
-});
-
-let octoberIncome = transactions.filter(transaction => {
-    return transaction.type === "income" &&
-    transaction.date.slice(0, 7) === "2026-10";
-});
-
-let octoberExpenses = transactions.filter(transaction => {
-    return transaction.type === "expense" &&
-    transaction.date.slice(0, 7) === "2026-10";
-});
-
-let totalNovIncome = novemberIncome.reduce((total, transaction) => {
-    return total + transaction.amount;
-}, 0);
-
-let totalNovExpenses = novemberExpenses.reduce((total, transaction) => {
-    return total + transaction.amount;
-}, 0);
-
-let totalOctIncome = octoberIncome.reduce((total, transaction) => {
-    return total + transaction.amount;
-}, 0);
-
-let totalOctExpenses = octoberExpenses.reduce((total, transaction) => {
-    return total + transaction.amount;
-}, 0);
-
-function calculatePercentageChange(newValue, oldValue) {
-    return (newValue - oldValue) / oldValue * 100;
-}
-
-let incomeChange = calculatePercentageChange(totalNovIncome, totalOctIncome);
-
-let expenseChange = calculatePercentageChange(totalNovExpenses, totalOctExpenses);
-
-let octoberBalance = totalOctIncome - totalOctExpenses;
-let novemberBalance = totalNovIncome - totalNovExpenses;
-
-let balanceChange = calculatePercentageChange(novemberBalance, octoberBalance);
-
 function displayChange(element, change, reverse = false) {
+
+    if (change === "unavailable") {
+        element.textContent = "N/A";
+        return;
+    }
+    
+    element.classList.remove("positive-change", "negative-change");
+
     if (change >= 0 && reverse === true) {
         element.classList.add("negative-change");
         element.textContent = "↑ " + Math.abs(change).toFixed(2) + "% from last month";
@@ -221,3 +284,8 @@ function displayChange(element, change, reverse = false) {
 }
 
 updateDashboard()
+
+
+
+
+
