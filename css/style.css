@@ -432,6 +432,12 @@ input:checked ~ .toggle .mid-line{
     font-weight: 400;
 }
 
+#summary-con #savings-change {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--secondary-text);
+}
+
 @media (max-width: 768px) {
     #summary-con {
         position: static;
@@ -584,10 +590,35 @@ input:checked ~ .toggle .mid-line{
     font-weight: 600;
 }
 
+.saving-type {
+    color: #3b82f6 !important;
+    font-weight: 600;
+}
+
 #transactions-con tbody tr {
     transition: background-color 0.2s ease;
 }
 
 #transactions-con tbody tr:hover {
     background-color: var(--base-variant);
+}
+
+#total-spending {
+    font-size: 22px;
+    font-weight: 700;
+    fill: var(--text-color);
+}
+
+.chart-center-label {
+    font-size: 11px;
+    fill: var(--secondary-text);
+}
+
+#grocery-circle,
+#transportation-circle,
+#other-circle,
+#subscription-circle {
+    paint-order: stroke;
+    filter: drop-shadow(0 2px 3px var(--shadow-color));
+    stroke-width: 32px;
 }
