@@ -113,8 +113,8 @@ body{
     padding: 4px;
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 15px;
+    position: fixed;
+    top: 25px;
     left: 15px;
     z-index: 4;
     background: transparent;
@@ -156,10 +156,10 @@ body{
     box-sizing: border-box;
 }
 
-.slide{
+.slide {
     height: 100vh;
     width: 230px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: var(--base-variant);
@@ -193,10 +193,10 @@ input{
 }
 
 .toggle{
-    position: absolute;
+    position: fixed;
     height: 25px;
     width: 25px;
-    top: 30px;
+    top: 40px;
     left: 80px;
     z-index: 5;
     cursor: pointer;
