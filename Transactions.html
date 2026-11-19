@@ -73,11 +73,11 @@
         <header id="page-header">
             <section id="page-title">
                 <h1 id="page-name">
-                    Dashboard
+                    Transactions
                 </h1>
 
                 <p id="page-desc">
-                    Overview of all finacials
+                    Where to add and view transactions
                 </p>
 
             </section>
@@ -90,10 +90,6 @@
 
         </header>
 
-        <section id="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect class="icon-bg" x="0" y="0" width="512" height="512" rx="100"/><path class="wallet" d="M145 190 L315 105 Q340 93 353 119 L375 157 Z"/><path class="wallet" d="M195 190 L350 145 Q374 138 385 163 L395 190 Z"/><path class="wallet" d="M105 205Q105 180 135 180H377Q407 180 407 210V240H345Q305 240 305 280Q305 320 345 320H407V355Q407 385 377 385H135Q105 385 105 355Z"/><path class="wallet" d="M345 250H410Q430 250 430 270V290Q430 310 410 310H345Q315 310 315 280Q315 250 345 250Z"/><circle class="icon-bg" cx="365" cy="280" r="12"/></svg>
-        </section>
-
         <button id="theme-switch">
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M12,21q-3.75,0-6.38-2.63T3,12T5.63,5.63T12,3q0.35,0 0.69,0.02q0.34,0.02 0.66,0.07q-1.03,0.73-1.64,1.89T11.1,7.5q0,2.25 1.57,3.82T16.5,12.9q1.38,0 2.53-0.61t1.88-1.64q0.05,0.33 0.07,0.66T21,12q0,3.75-2.63,6.38T12,21Z"/></svg>
@@ -101,4 +97,78 @@
             </span>
         </button>
     </header>
+
+    <section id="transactions-chart">
+        <div class="transactions-header">
+            <h1>Transactions</h1>
+
+            <button id="add-transaction" class="view-all-link">
+                + Add Transaction
+            </button>
+        </div>
+
+        <div id="form-overlay" hidden>
+            <form id="transaction-form">
+                <button type="button" id="close-form" class="close-form">&times;</button>
+
+                <label for="transaction-name">Name</label>
+                <input type="text" id="transaction-name" required>
+
+                <label for="amount-name">Amount</label>
+                <div class="amount-input">
+                    
+                    <input type="number" id="transaction-amount" min="0.01" step="0.01" required>
+
+                    <div class="amount-controls">
+                        <button type="button" id="amount-up">▲</button>
+                        <button type="button" id="amount-down">▼</button>
+                    </div>
+                </div>
+
+                <label for="transaction-category">Category</label>
+                <select id="transaction-category" required>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Subscription">Subscription</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="transaction-type">Type</label>
+                <select id="transaction-type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                    <option value="saving">Saving</option>
+                </select>
+
+                <label for="transaction-date">Date</label>
+                <input type="date" id="transaction-date" required>
+
+                <button type="submit">Save Transaction</button>
+
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+
+            <tbody id="transactions-body">
+
+            </tbody>
+        </table>
+
+        <div id="pagination">
+            <button id="previous-page">Previous</button>
+            <span id="page-number"></span>
+            <button id="next-page">Next</button>
+        </div>
+    </section>
+
 </body>

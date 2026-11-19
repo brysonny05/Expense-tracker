@@ -48,18 +48,165 @@ const options = {
 
 dateDis.textContent =  today.toLocaleDateString("en-US", options);
 
-let transactions = [
-    { name: "Paycheck", amount: 850, type: "income", date: "2026-10-22", category: "Other"},
-    { name: "Kroger", amount: 65.50, type: "expense", date: "2026-11-03", category: "Groceries"},
-    { name: "Gas Station", amount: 40, type: "expense", date: "2026-10-17", category: "Transportation"},
-    { name: "Netflix", amount: 15.99, type: "expense", date: "2026-10-11", category: "Subscription"},
-    { name: "Refund", amount: 25, type: "income", date: "2026-11-06", category: "Other"},
-    { name: "Paycheck", amount: 1200, type: "income", date: "2026-11-01", category: "Other" },
-    { name: "Electric Bill", amount: 95.50, type: "expense", date: "2026-11-04", category: "Subscription" },
-    { name: "Savings Transfer", amount: 200, type: "saving", date: "2026-11-05", category: "" },
-    { name: "Restaurant", amount: 32.75, type: "expense", date: "2026-11-07", category: "Other" },
-    { name: "Freelance Work", amount: 350, type: "income", date: "2026-11-09", category: "Other" }
-];
+let savedTransactions = localStorage.getItem("transactions");
+
+let transactions = [];
+
+if (savedTransactions !== null) {
+    transactions = JSON.parse(savedTransactions);
+}
+
+let currentPage = 1;
+const transactionsPerPage = 10;
+
+function displayTransactions() {
+
+    let totalPages = Math.ceil(transactions.length / transactionsPerPage);
+
+    let pageNumber = document.getElementById("page-number");
+
+    pageNumber.textContent = `Page ${currentPage} of ${totalPages}`;
+
+    document.getElementById("previous-page").disabled = currentPage === 1;
+
+    document.getElementById("next-page").disabled = currentPage === totalPages;
+
+    let startIndex = (currentPage - 1) * transactionsPerPage;
+
+    let endIndex = startIndex + transactionsPerPage;
+
+    let pageTransactions = [...transactions]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(startIndex, endIndex);
+
+    let tableBody = document.querySelector("#transactions-body");
+
+    tableBody.innerHTML = "";
+
+    if (transactions.length === 0) {
+        let row = document.createElement("tr");
+        let messageCell = document.createElement("td");
+
+        messageCell.colSpan = 5;
+
+        messageCell.textContent = "No transactions yet. Click Add Transaction to get started.";
+
+        row.appendChild(messageCell);
+        tableBody.appendChild(row);
+    }
+
+    pageTransactions.forEach(transaction => {
+        let row = document.createElement("tr");
+
+        let nameCell = document.createElement("td");
+        let amountCell = document.createElement("td");
+        let typeCell = document.createElement("td");
+        let dateCell = document.createElement("td");
+        let categoryCell = document.createElement("td");
+
+        nameCell.textContent = transaction.name;
+        dateCell.textContent = transaction.date;
+        categoryCell.textContent = transaction.category;
+
+        amountCell.textContent = transaction.amount.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD"
+        });
+
+        if (transaction.type === "income") {
+            typeCell.classList.add("income-type");
+        } else if (transaction.type === "expense") {
+            typeCell.classList.add("expense-type");
+        } else if (transaction.type === "saving") {
+            typeCell.classList.add("saving-type");
+        }
+
+        typeCell.textContent = transaction.type;
+
+        row.appendChild(nameCell);
+        row.appendChild(categoryCell); 
+        row.appendChild(dateCell);
+        row.appendChild(typeCell);
+        row.appendChild(amountCell);
+    
+        tableBody.appendChild(row);
+    });
+}
+
+if (document.getElementById("transactions-body")) {
+
+    displayTransactions();
+
+    document.getElementById("next-page").addEventListener("click", () => {
+        let totalPages = Math.ceil(transactions.length / transactionsPerPage);
+
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayTransactions();
+        }
+    });
+
+    document.getElementById("previous-page").addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayTransactions();
+        }
+    });
+
+    const addTransactionButton = document.getElementById("add-transaction");
+    const transactionForm = document.getElementById("transaction-form");
+
+    const formOverlay = document.getElementById("form-overlay");
+
+    const closeFormButton = document.getElementById("close-form");
+
+    closeFormButton.addEventListener("click", () => {
+        formOverlay.hidden = true;
+    });
+
+    addTransactionButton.addEventListener("click", () => {
+        formOverlay.hidden = !formOverlay.hidden;
+    });
+
+    transactionForm.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        let name = document.getElementById("transaction-name").value;
+        let amount = Number(document.getElementById("transaction-amount").value);
+        let category = document.getElementById("transaction-category").value;
+        let type = document.getElementById("transaction-type").value;
+        let date = document.getElementById("transaction-date").value;
+
+        if (type === "income") {
+            category = "Income"
+        } else if (type === "saving") {
+            category = "Savings"
+        } 
+
+        let newTransaction = {
+            name: name,
+            amount: amount,
+            category: category,
+            type: type,
+            date: date
+        }
+
+        transactions.push(newTransaction);
+
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+        
+        currentPage = 1;
+
+        displayTransactions()
+
+        transactionForm.reset();
+
+        formOverlay.hidden = true;
+
+    });
+}
+
 
 function calculateIncome() {
 
@@ -302,6 +449,8 @@ function displayChange(element, change, reverse = false) {
     }
 }
 
+if (document.getElementById("balance-num")) {
+
 updateDashboard()
 
 //Expenses Pie chart
@@ -535,3 +684,5 @@ monthlyData.forEach((data, index) => {
     monthlyChart.appendChild(incomeBar);
     monthlyChart.appendChild(expenseBar);
 });
+
+}
